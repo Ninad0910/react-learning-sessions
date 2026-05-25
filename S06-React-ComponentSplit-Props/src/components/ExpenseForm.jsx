@@ -11,6 +11,7 @@ export default function ExpenseForm({ setUpdateExpense }) {
       onSubmit={(e) => {
         e.preventDefault()
         const newExpense = {
+          id: crypto.randomUUID(),
           category: categoryRef.current.value,
           amount: Number(amountRef.current.value),
         }

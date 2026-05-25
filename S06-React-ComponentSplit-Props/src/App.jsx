@@ -5,11 +5,11 @@ import FilterInput from './components/FilterInput'
 import FilterResults from './components/FilterResults'
 
 const expenses = [
-  { category: 'Mobile Bill', amount: 800 },
-  { category: 'Lunch', amount: 400 },
-  { category: 'Groceries', amount: 1200 },
-  { category: 'Gym Membership', amount: 600 },
-  { category: 'Coffee', amount: 200 },
+  { id: 1, category: 'Mobile Bill', amount: 800 },
+  { id: 2, category: 'Lunch', amount: 400 },
+  { id: 3, category: 'Groceries', amount: 1200 },
+  { id: 4, category: 'Gym Membership', amount: 600 },
+  { id: 5, category: 'Coffee', amount: 200 },
 ]
 
 export default function App() {
@@ -34,6 +34,7 @@ export default function App() {
         formattedAmount: '₹' + m.amount,
       }
     })
+    console.log(updateExpense);
   return (
     <>
       <ExpenseForm setUpdateExpense={setUpdateExpense} />
