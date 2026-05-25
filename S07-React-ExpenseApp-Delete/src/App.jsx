@@ -26,15 +26,24 @@ export default function App() {
         return exp.amount > Number(minAmount) && exp.amount < Number(maxAmount)
       }
     })
-    .sort((a, b) => b.amount - a.amount)
+    .sort((a, b) => a.amount - b.amount)
     .map((m) => {
       return {
+        id: m.id,
         category: m.category,
         label: 'High Spend',
         formattedAmount: '₹' + m.amount,
       }
     })
-    console.log(updateExpense);
+    
+  function handleDelete(item_id) {
+    const modifiedArray = updateExpense.filter((mod) => mod.id !== item_id)
+    setUpdateExpense(modifiedArray)
+    // console.log(modifiedArray);
+  }  
+
+  // console.log(updateExpense)
+  // console.log(filteredArray)
   return (
     <>
       <ExpenseForm setUpdateExpense={setUpdateExpense} />
@@ -48,7 +57,7 @@ export default function App() {
       {/* Spread props object using spread operator */}
       {/* <FilterInput {...filterProps} /> */}
       <hr />
-      <FilterResults filteredArray={filteredArray} />
+      <FilterResults filteredArray={filteredArray} handleDelete={handleDelete} />
     </>
   )
 }
