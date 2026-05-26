@@ -1,5 +1,5 @@
 {
-  "name": "s09-react-expenseapp-tailwind",
+  "name": "s10-react-lazyloading-codesplitting",
   "private": true,
   "version": "0.0.0",
   "type": "module",

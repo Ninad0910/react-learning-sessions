@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import { useState } from 'react'
 import ExpenseForm from './components/ExpenseForm'
 import FilterInput from './components/FilterInput'
-import FilterResults from './components/FilterResults'
 
+const FilterResults = React.lazy(() => import('./components/FilterResults'))
 
 const expenses = [
   { id: '1', category: 'Mobile Bill', amount: 800 },
@@ -94,18 +94,19 @@ export default function App() {
         />
 
         <hr className="my-6" />
-
-        <FilterResults
-          filteredArray={filteredArray}
-          handleDelete={handleDelete}
-          editingId={editingId}
-          handleEdit={handleEdit}
-          editCategory={editCategory}
-          editAmount={editAmount}
-          handleSave={handleSave}
-          setEditCategory={setEditCategory}
-          setEditAmount={setEditAmount}
-        />
+        <Suspense fallback={<div>Loading expenses...</div>}>
+          <FilterResults
+            filteredArray={filteredArray}
+            handleDelete={handleDelete}
+            editingId={editingId}
+            handleEdit={handleEdit}
+            editCategory={editCategory}
+            editAmount={editAmount}
+            handleSave={handleSave}
+            setEditCategory={setEditCategory}
+            setEditAmount={setEditAmount}
+          />
+        </Suspense>
       </div>
     </main>
   )
