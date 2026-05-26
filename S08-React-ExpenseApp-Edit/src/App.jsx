@@ -51,7 +51,6 @@ export default function App() {
     setEditAmount(item_amount)
     setEditCategory(item_category)
     setEditingId(item_id)
-    console.log(item_category);
   }
 
   function handleSave(item_id, upatedCategory, updatedAmount) {
@@ -95,9 +94,11 @@ export default function App() {
         handleDelete={handleDelete}
         editingId={editingId}
         handleEdit={handleEdit}
-        editCategory = {editCategory}
-        editAmount = {editAmount}
+        editCategory={editCategory}
+        editAmount={editAmount}
         handleSave={handleSave}
+        setEditCategory={setEditCategory}
+        setEditAmount={setEditAmount}
       />
     </>
   )
