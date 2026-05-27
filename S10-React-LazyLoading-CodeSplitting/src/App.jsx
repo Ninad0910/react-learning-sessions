@@ -1,8 +1,8 @@
 import React, { Suspense } from 'react'
 import { useState } from 'react'
-import ExpenseForm from './components/ExpenseForm'
 import FilterInput from './components/FilterInput'
 
+const ExpenseForm = React.lazy(() => import('./components/ExpenseForm'))
 const FilterResults = React.lazy(() => import('./components/FilterResults'))
 
 const expenses = [
@@ -82,8 +82,13 @@ export default function App() {
       <h1 className="text-4xl font-bold mb-3">Expense Tracker</h1>
       <p className="text-gray-500 mb-6">Add, edit and filter your expenses</p>
       <div className="w-full max-w-4xl bg-white p-6 rounded-lg shadow-lg">
+        {/* <Suspense
+          fallback={
+            <div className="animate-pulse bg-gray-200 rounded h-12 w-full mb-3"></div>
+          }
+        >
+        </Suspense> */}
         <ExpenseForm setUpdateExpense={setUpdateExpense} />
-
         <hr className="my-6" />
 
         <FilterInput
@@ -94,7 +99,15 @@ export default function App() {
         />
 
         <hr className="my-6" />
-        <Suspense fallback={<div>Loading expenses...</div>}>
+        <Suspense
+          fallback={
+            <>
+              <div className="animate-pulse bg-gray-200 rounded h-12 w-full mb-3"></div>
+              <div className="animate-pulse bg-gray-200 rounded h-12 w-full mb-3"></div>
+              <div className="animate-pulse bg-gray-200 rounded h-12 w-full mb-3"></div>
+            </>
+          }
+        >
           <FilterResults
             filteredArray={filteredArray}
             handleDelete={handleDelete}
