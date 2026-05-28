@@ -5,7 +5,7 @@ export default function FilterInput({
   maxAmount,
   setMaxAmount,
   setMinAmount,
-  resetFilter
+  resetFilter,
 }) {
   return (
     <>
@@ -38,7 +38,10 @@ export default function FilterInput({
           />
         </div>
 
-        <button className="bg-blue-500 text-white px-5 py-2.5 rounded hover:bg-blue-600 transition" onClick={() => resetFilter()}>
+        <button
+          className="bg-blue-500 text-white px-5 py-2.5 rounded hover:bg-blue-600 transition"
+          onClick={resetFilter}
+        >
           Clear Filter
         </button>
       </div>
