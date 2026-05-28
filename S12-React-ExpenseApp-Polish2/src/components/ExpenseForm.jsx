@@ -16,26 +16,27 @@ export default function ExpenseForm({ setUpdateExpense, updateExpense }) {
           amount: Number(amountRef.current.value),
         }
 
-        const check = updateExpense.some(
-          (expense) => expense.category === newExpense.category,
-        )
-
-        if (check) {
-          return alert('Adding Same Expense')
-        } else {
-          if (
-            newExpense.category === '' ||
-            newExpense.amount === '' ||
-            isNaN(newExpense.amount)
-          ) {
-            console.log('Invalid Input')
-          } else {
-            console.log(check)
-
-            setUpdateExpense((prevState) => [...prevState, newExpense])
-            e.target.reset()
-          }
+        if (
+          newExpense.category === '' ||
+          newExpense.amount === '' ||
+          isNaN(newExpense.amount)
+        ) {
+          return alert('Add valid Expense')
         }
+
+        if (
+          updateExpense.some(
+            (expense) =>
+              expense.category.toLowerCase() ===
+              newExpense.category.toLowerCase(),
+          )
+        ) {
+          return alert('Adding Same Expense')
+        }
+        
+        // if we reach here, both checks passed
+        setUpdateExpense((prevState) => [...prevState, newExpense])
+        e.target.reset()
       }}
     >
       <div className="flex flex-col">
