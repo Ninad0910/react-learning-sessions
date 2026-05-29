@@ -44,7 +44,9 @@ export default function App() {
 
   function handleDelete(item_id) {
     const modifiedArray = updateExpense.filter((mod) => mod.id !== item_id)
-    window.confirm("Are you sure you want to delete this Expense?") ? setUpdateExpense(modifiedArray) : alert("Expense not deleted")
+    window.confirm('Are you sure you want to delete this Expense?')
+      ? setUpdateExpense(modifiedArray)
+      : alert('Expense not deleted')
     // console.log(modifiedArray);
   }
 
@@ -87,13 +89,13 @@ export default function App() {
       <h1 className="text-4xl font-bold mb-3">Expense Tracker</h1>
       <p className="text-gray-500 mb-6">Add, edit and filter your expenses</p>
       <div className="w-full max-w-4xl bg-white p-6 rounded-lg shadow-lg">
-        {/* <Suspense
+        <Suspense
           fallback={
             <div className="animate-pulse bg-gray-200 rounded h-12 w-full mb-3"></div>
           }
         >
-        </Suspense> */}
-        <ExpenseForm setUpdateExpense={setUpdateExpense} />
+          <ExpenseForm setUpdateExpense={setUpdateExpense} />
+        </Suspense>
         <hr className="my-6" />
 
         <FilterInput
@@ -101,7 +103,7 @@ export default function App() {
           maxAmount={maxAmount}
           setMinAmount={setMinAmount}
           setMaxAmount={setMaxAmount}
-          resetFilter = {resetFilter}
+          resetFilter={resetFilter}
         />
 
         <hr className="my-6" />

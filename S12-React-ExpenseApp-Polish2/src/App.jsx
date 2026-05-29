@@ -89,16 +89,16 @@ export default function App() {
       <h1 className="text-4xl font-bold mb-3">Expense Tracker</h1>
       <p className="text-gray-500 mb-6">Add, edit and filter your expenses</p>
       <div className="w-full max-w-4xl bg-white p-6 rounded-lg shadow-lg">
-        {/* <Suspense
+        <Suspense
           fallback={
             <div className="animate-pulse bg-gray-200 rounded h-12 w-full mb-3"></div>
           }
         >
-        </Suspense> */}
-        <ExpenseForm
-          setUpdateExpense={setUpdateExpense}
-          updateExpense={updateExpense}
-        />
+          <ExpenseForm
+            setUpdateExpense={setUpdateExpense}
+            updateExpense={updateExpense}
+          />
+        </Suspense>
         <hr className="my-6" />
 
         <FilterInput
