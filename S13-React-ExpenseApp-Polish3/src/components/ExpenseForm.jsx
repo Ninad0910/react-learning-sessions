@@ -1,12 +1,23 @@
 import React from 'react'
 import { useRef } from 'react'
 
-export default function ExpenseForm({ setUpdateExpense, updateExpense, setToastMessage }) {
+export default function ExpenseForm({
+  setUpdateExpense,
+  updateExpense,
+  setToastMessage,
+}) {
   const categoryRef = useRef(null)
   const amountRef = useRef(null)
   return (
     <form
-      className="flex items-end gap-4 rounded-lg mb-6"
+      className="
+flex
+flex-col
+md:flex-row
+gap-4
+items-end
+mb-6
+"
       onSubmit={(e) => {
         e.preventDefault()
 
@@ -33,15 +44,15 @@ export default function ExpenseForm({ setUpdateExpense, updateExpense, setToastM
         ) {
           return alert('Adding Same Expense')
         }
-        
+
         // if we reach here, both checks passed
         setUpdateExpense((prevState) => [...prevState, newExpense])
         e.target.reset()
-        setToastMessage("New Expense Added")
+        setToastMessage('New Expense Added')
       }}
     >
-      <div className="flex flex-col">
-        <label htmlFor="category" className="mb-1 font-medium">
+      <div className="flex flex-col w-full">
+        <label htmlFor="category" className="mb-2 font-medium">
           Category
         </label>
 
@@ -50,12 +61,24 @@ export default function ExpenseForm({ setUpdateExpense, updateExpense, setToastM
           ref={categoryRef}
           id="category"
           maxLength="30"
-          className="border border-gray-300 px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="
+border
+border-gray-300
+dark:border-gray-600
+bg-white
+dark:bg-gray-700
+px-4
+py-2
+rounded-lg
+focus:ring-2
+focus:ring-blue-500
+outline-none
+"
         />
       </div>
 
-      <div className="flex flex-col">
-        <label htmlFor="amount" className="mb-1 font-medium">
+      <div className="flex flex-col w-full">
+        <label htmlFor="amount" className="mb-2 font-medium">
           Amount
         </label>
 
@@ -63,13 +86,35 @@ export default function ExpenseForm({ setUpdateExpense, updateExpense, setToastM
           type="text"
           ref={amountRef}
           id="amount"
-          className="border border-gray-300 px-3 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="
+border
+border-gray-300
+dark:border-gray-600
+bg-white
+dark:bg-gray-700
+px-4
+py-2
+rounded-lg
+focus:ring-2
+focus:ring-blue-500
+outline-none
+"
         />
       </div>
 
       <button
         type="submit"
-        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
+        className="
+bg-blue-600
+hover:bg-blue-700
+text-white
+px-6
+py-2.5
+rounded-lg
+transition
+w-full
+md:w-auto
+"
       >
         Submit
       </button>

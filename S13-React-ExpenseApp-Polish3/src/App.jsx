@@ -47,9 +47,12 @@ export default function App() {
 
   function handleDelete(item_id) {
     const modifiedArray = updateExpense.filter((mod) => mod.id !== item_id)
-    window.confirm('Are you sure you want to delete this Expense?')
-      ? (setUpdateExpense(modifiedArray), setToastMessage('Expense deleted'))
-      : alert('Expense not deleted')
+    if (window.confirm('Are you sure you want to delete this Expense?')) {
+      setUpdateExpense(modifiedArray)
+      setToastMessage('Expense deleted')
+    } else {
+      alert('Expense not deleted')
+    }
     // console.log(modifiedArray);
   }
 
@@ -96,25 +99,46 @@ export default function App() {
   // console.log(filteredArray)
   // console.log(isDark);
   return (
-    <main className="min-h-screen flex flex-col items-center bg-gray-100 ">
-      <header className="flex items-stretch justify-between w-full py-4 px-8 mb-12">
+    <main className="min-h-screen flex flex-col items-center bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 px-4 py-8 transition-colors duration-300">
+      <header className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between w-full max-w-4xl mb-8">
         <div>
-          <h1 className="text-4xl font-bold mb-3">Expense Tracker</h1>
-          <p className="text-gray-500">Add, edit and filter your expenses</p>
+          <h1 className="text-4xl font-bold mb-2">Expense Tracker</h1>
+          <p className="text-gray-600 dark:text-gray-400">
+            Add, edit and filter your expenses
+          </p>
         </div>
         <button
+          className="
+            px-4 py-2 rounded-lg
+            bg-white dark:bg-gray-800
+            border border-gray-300 dark:border-gray-700
+            hover:scale-105
+            transition
+            shadow-sm
+            "
           onClick={() => {
             document.documentElement.classList.toggle('dark')
-            return setIsDark(!isDark)
+            setIsDark(!isDark)
           }}
         >
           {isDark ? '☀️ Light Mode' : '🌙 Dark Mode'}
         </button>
       </header>
-      <div className="w-full max-w-4xl bg-white p-6 rounded-lg shadow-lg">
+      <div
+        className="
+        w-full
+        max-w-4xl
+        bg-white
+        dark:bg-gray-800
+        p-6
+        rounded-2xl
+        shadow-xl
+        transition-colors
+        "
+      >
         <Suspense
           fallback={
-            <div className="animate-pulse bg-gray-200 rounded h-12 w-full mb-3"></div>
+            <div className="animate-pulse bg-gray-200 dark:bg-gray-700 rounded h-12 mb-4"></div>
           }
         >
           <ExpenseForm
@@ -123,7 +147,7 @@ export default function App() {
             setToastMessage={setToastMessage}
           />
         </Suspense>
-        <hr className="my-6" />
+        <hr className="my-6 border-gray-300 dark:border-gray-700" />
 
         <FilterInput
           minAmount={minAmount}
@@ -133,13 +157,13 @@ export default function App() {
           resetFilter={resetFilter}
         />
 
-        <hr className="my-6" />
+        <hr className="my-6 border-gray-300 dark:border-gray-700" />
         <Suspense
           fallback={
             <>
-              <div className="animate-pulse bg-gray-200 rounded h-12 w-full mb-3"></div>
-              <div className="animate-pulse bg-gray-200 rounded h-12 w-full mb-3"></div>
-              <div className="animate-pulse bg-gray-200 rounded h-12 w-full mb-3"></div>
+              <div className="animate-pulse bg-gray-200 dark:bg-gray-700 rounded h-12 mb-3"></div>
+              <div className="animate-pulse bg-gray-200 dark:bg-gray-700 rounded h-12 mb-3"></div>
+              <div className="animate-pulse bg-gray-200 dark:bg-gray-700 rounded h-12 mb-3"></div>
             </>
           }
         >
@@ -157,7 +181,20 @@ export default function App() {
         </Suspense>
         <div>
           {toastMessage && (
-            <div className="fixed bottom-4 right-4 bg-green-500 text-white px-4 py-2 rounded shadow-lg">
+            <div
+              className="
+                fixed
+                bottom-5
+                right-5
+                bg-green-600
+                text-white
+                px-5
+                py-3
+                rounded-xl
+                shadow-xl
+                animate-pulse
+                "
+            >
               {toastMessage}
             </div>
           )}
