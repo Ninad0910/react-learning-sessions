@@ -5,7 +5,12 @@ export default function FilterInput({
   maxAmount,
   setMaxAmount,
   setMinAmount,
+  selectedCategory,
+  setSelectedCategory,
   resetFilter,
+  categories,
+  sortOrder,
+  setSortOrder,
 }) {
   return (
     <>
@@ -69,6 +74,68 @@ focus:ring-blue-500
 outline-none
 "
           />
+        </div>
+
+        <div className="flex flex-col w-full">
+          <label htmlFor="categories" className="mb-2 font-medium">
+            Category
+          </label>
+
+          <select
+            name="categories"
+            id="categories"
+            className="
+border
+border-gray-300
+dark:border-gray-600
+bg-white
+dark:bg-gray-700
+px-4
+py-2
+rounded-lg
+focus:ring-2
+focus:ring-blue-500
+outline-none
+"
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+          >
+            {categories.map((category, i) => (
+              <option key={i} value={category}>
+                {category}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="flex flex-col w-full">
+          <label htmlFor="categories" className="mb-2 font-medium">
+            Sort
+          </label>
+
+          <select
+            name="categories"
+            id="categories"
+            className="
+border
+border-gray-300
+dark:border-gray-600
+bg-white
+dark:bg-gray-700
+px-4
+py-2
+rounded-lg
+focus:ring-2
+focus:ring-blue-500
+outline-none
+"
+            value={sortOrder}
+            onChange={(e) => setSortOrder(e.target.value)}
+          >
+            <option value="">Sort By</option>
+            <option value="asc">Low to High</option>
+            <option value="desc">High to Low</option>
+          </select>
         </div>
 
         <button

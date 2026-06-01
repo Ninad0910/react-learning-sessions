@@ -25,7 +25,7 @@ export default function FilterResults({
         py-10
         "
         >
-          No Expenses between these two amounts
+          No expenses found for the selected filters.
         </h1>
       ) : (
         filteredArray.map((item) => (

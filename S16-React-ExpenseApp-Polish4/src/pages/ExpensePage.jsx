@@ -15,18 +15,35 @@ export default function ExpensePage({ updateExpense, setUpdateExpense }) {
   const [editCategory, setEditCategory] = useState('')
   const [editAmount, setEditAmount] = useState('')
   const [toastMessage, setToastMessage] = useState(null)
+  const [selectedCategory, setSelectedCategory] = useState('All')
+  const [sortOrder, setSortOrder] = useState('')
+
+  const categories = [
+    'All',
+    ...new Set(updateExpense.map((exp) => exp.category)),
+  ]
 
   /* Another way to pass props by grouping them in object */
   // const filterProps = { minAmount, maxAmount, setMinAmount, setMaxAmount }
-  const filteredArray = updateExpense
+  const filteredArray = [...updateExpense]
     .filter((exp) => {
-      if (minAmount === '' || maxAmount === '') {
-        return exp
-      } else {
-        return exp.amount > Number(minAmount) && exp.amount < Number(maxAmount)
-      }
+      return (
+        (selectedCategory === 'All' || exp.category === selectedCategory) &&
+        (minAmount === '' || exp.amount >= Number(minAmount)) &&
+        (maxAmount === '' || exp.amount <= Number(maxAmount))
+      )
     })
-    .sort((a, b) => a.amount - b.amount)
+    .sort((a, b) => {
+      if (sortOrder === 'asc') {
+        return a.amount - b.amount
+      }
+
+      if (sortOrder === 'desc') {
+        return b.amount - a.amount
+      }
+
+      return 0
+    })
     .map((m) => {
       return {
         id: m.id,
@@ -37,6 +54,7 @@ export default function ExpensePage({ updateExpense, setUpdateExpense }) {
         formattedAmount: '₹' + m.amount,
       }
     })
+
 
   function handleDelete(item_id) {
     const modifiedArray = updateExpense.filter((mod) => mod.id !== item_id)
@@ -82,6 +100,8 @@ export default function ExpensePage({ updateExpense, setUpdateExpense }) {
   function resetFilter() {
     setMinAmount('')
     setMaxAmount('')
+    setSelectedCategory('All')
+    setSortOrder('')
   }
 
   useEffect(() => {
@@ -91,7 +111,7 @@ export default function ExpensePage({ updateExpense, setUpdateExpense }) {
   }, [toastMessage])
 
   return (
-    <main className="min-h-screen flex flex-col items-center bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 px-4 py-8 transition-colors duration-300">
+    <section className="min-h-screen flex flex-col items-center bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 px-4 py-8 transition-colors duration-300">
       <div
         className="
         w-full
@@ -122,7 +142,12 @@ export default function ExpensePage({ updateExpense, setUpdateExpense }) {
           maxAmount={maxAmount}
           setMinAmount={setMinAmount}
           setMaxAmount={setMaxAmount}
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
           resetFilter={resetFilter}
+          categories={categories}
+          sortOrder={sortOrder}
+          setSortOrder={setSortOrder}
         />
 
         <hr className="my-6 border-gray-300 dark:border-gray-700" />
@@ -170,6 +195,6 @@ export default function ExpensePage({ updateExpense, setUpdateExpense }) {
           )}
         </div>
       </div>
-    </main>
+    </section>
   )
 }
