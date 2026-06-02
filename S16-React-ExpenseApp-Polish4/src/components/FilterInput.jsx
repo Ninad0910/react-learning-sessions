@@ -109,13 +109,13 @@ outline-none
         </div>
 
         <div className="flex flex-col w-full">
-          <label htmlFor="categories" className="mb-2 font-medium">
+          <label htmlFor="sortOrder" className="mb-2 font-medium">
             Sort
           </label>
 
           <select
-            name="categories"
-            id="categories"
+            name="sortOrder"
+            id="sortOrder"
             className="
 border
 border-gray-300
