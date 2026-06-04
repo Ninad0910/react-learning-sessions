@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function useFilteredArray({ 
+export default function useFilteredExpense({ 
   updateExpense, 
   minAmount, 
   maxAmount, 

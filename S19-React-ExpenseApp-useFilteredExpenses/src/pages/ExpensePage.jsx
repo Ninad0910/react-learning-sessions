@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 import useLocalStorage from '../hooks/useLocalStorage'
 import ConfirmModal from '../components/ConfirmModal'
 import useExpenseContext from '../context/ExpenseContext'
-import useFilteredArray from '../hooks/useFilteredArray'
+import useFilteredExpense from '../hooks/useFilteredExpense'
 
 const ExpenseForm = React.lazy(() => import('../components/ExpenseForm'))
 const FilterResults = React.lazy(() => import('../components/FilterResults'))
@@ -31,7 +31,7 @@ export default function ExpensePage() {
 
   /* Another way to pass props by grouping them in object */
   // const filterProps = { minAmount, maxAmount, setMinAmount, setMaxAmount }
-  const filteredExpenses = useFilteredArray({
+  const filteredExpenses = useFilteredExpense({
     updateExpense,
     minAmount,
     maxAmount,
