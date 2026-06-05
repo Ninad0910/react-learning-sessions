@@ -34,7 +34,7 @@ setFilter(newFilter){
 
   render() {
     const filteredExpenses = this.state.expenses.filter(expense => {    
-      if (this.state.filter === 'high') {
+      if (this.state.filter === 'High') {
         return expense.amount > 500;
       }
       return true;
