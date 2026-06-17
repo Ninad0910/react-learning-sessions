@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.1/redux.min.js"></script>
+</head>
+
+<body>
+    <script>
+        const intitalState = {
+            expenses: [
+                { id: '1', title: 'Netflix Subscription', category: 'Entertainment', amount: 649 },
+                { id: '2', title: 'Uber Ride', category: 'Transport', amount: 350 },
+                { id: '3', title: 'Swiggy Delivery', category: 'Food', amount: 520 },
+                { id: '4', title: 'Zudio Shopping', category: 'Clothing', amount: 1500 },
+            ]
+        }
+
+        function expenseReducer(state = intitalState, action) {
+            if (action.type === 'ADD_EXPENSE') {
+                return {
+                    ...state,
+                    expenses: [...state.expenses, action.payload]
+                }
+            }
+
+            if (action.type === 'DELETE_EXPENSE') {
+                return {
+                    ...state,
+                    expenses: state.expenses.filter(exp => exp.id !== action.payload)
+                }
+            }
+
+            return state
+        }
+
+        const { createStore } = Redux
+        const store = createStore(expenseReducer)
+
+
+        store.subscribe(() => {
+            console.log('Current state:', store.getState())
+        })
+
+
+        store.dispatch({
+            type: 'ADD_EXPENSE',
+            payload: { id: '5', title: 'Dmart Shopping', category: 'Groceries', amount: 5020 }
+        })
+
+
+        store.dispatch({
+            type: 'DELETE_EXPENSE',
+            payload: '1'
+        })
+
+    </script>
+</body>
+
+</html>
