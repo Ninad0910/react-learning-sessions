@@ -1,4 +1,1 @@
-*{
-    box-sizing: border-box;
-    font-family: cursive, sans-serif;
-}
+@import "tailwindcss";
