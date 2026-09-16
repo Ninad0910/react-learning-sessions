@@ -108,7 +108,7 @@ export default function ExpensePage() {
   }, [toastMessage])
 
   return (
-    <section className="min-h-screen flex flex-col items-center bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 px-4 py-8 transition-colors duration-300">
+    <section className="min-h-screen flex flex-col items-center bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 px-4 pt-8 pb-5 transition-colors duration-300">
       <div
         className="
         w-full
@@ -119,6 +119,7 @@ export default function ExpensePage() {
         rounded-2xl
         shadow-xl
         transition-colors
+        mb-4
         "
       >
         <Suspense
