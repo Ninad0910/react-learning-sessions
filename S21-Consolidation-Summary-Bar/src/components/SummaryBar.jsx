@@ -17,7 +17,7 @@ export default function SummaryBar({ filteredExpenses }) {
     w-full max-w-4xl mx-auto
     bg-gray-100/90 dark:bg-gray-900/90
     backdrop-blur-md
-    border-t border-gray-200 dark:border-gray-700
+    border border-black/5 dark:border-white/10 shadow-2xl bg-gray-100/95 dark:bg-gray-900/95
     px-4 sm:px-6 py-4
     shadow-lg
     rounded-2xl
